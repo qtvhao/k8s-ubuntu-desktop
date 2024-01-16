@@ -7,7 +7,7 @@ RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#'
 # built-in packages
 RUN apt-get update
 RUN apt-get -o Dpkg::Options::='--force-confold' --force-yes -fuy dist-upgrade
-RUN apt-get install -y python-apt
+# RUN apt-get install -y python-apt
 RUN apt-get install -y --no-install-recommends software-properties-common curl
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server pwgen sudo vim-common net-tools \
