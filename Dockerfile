@@ -2,17 +2,17 @@ FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#' /etc/apt/sources.list
+# RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#' /etc/apt/sources.list
 
 # built-in packages
-RUN apt-get update
-RUN apt-get -o Dpkg::Options::='--force-confold' --force-yes -fuy dist-upgrade
+# RUN apt-get update
+# RUN apt-get -o Dpkg::Options::='--force-confold' --force-yes -fuy dist-upgrade
 # RUN apt-get install -y python-apt
-RUN apt-get install -y --no-install-recommends software-properties-common curl
-RUN apt-get update
+RUN apt update && apt-get install -y --no-install-recommends software-properties-common curl
+# RUN apt-get update
 RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server pwgen sudo vim-common net-tools \
-        x11vnc xserver-xorg-video-dummy ttf-ubuntu-font-family firefox \
-        nginx python-pip python-dev build-essential mesa-utils libgl1-mesa-dri \
+        x11vnc xserver-xorg-video-dummy firefox \
+        nginx python-pip build-essential mesa-utils libgl1-mesa-dri \
         dbus-x11 x11-utils wget tmux htop git dconf-editor
 RUN apt-get install -y --allow-unauthenticated ubuntu-mate-desktop ubuntu-mate-core mate-backgrounds ubuntu-mate-wallpapers
 
