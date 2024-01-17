@@ -5,14 +5,14 @@ ENV DEBIAN_FRONTEND noninteractive
 # RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#' /etc/apt/sources.list
 
 
-RUN apt update && apt-get install -y --no-install-recommends software-properties-common curl && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt update && apt-get install -y --no-install-recommends curl && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # RUN apt-get update
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server pwgen sudo vim-common net-tools \
 #         nginx python-pip build-essential \
 #         wget tmux htop git dconf-editor
 RUN apt update && apt-get install -y --no-install-recommends --allow-unauthenticated wget \
         x11vnc xserver-xorg-video-dummy \
-        dbus-x11 x11-utils mesa-utils libgl1-mesa-dri && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        dbus-x11 x11-utils && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # RUN apt-get install -y --allow-unauthenticated ubuntu-mate-desktop ubuntu-mate-core mate-backgrounds ubuntu-mate-wallpapers
 
 # Create my user
