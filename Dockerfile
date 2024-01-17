@@ -14,7 +14,9 @@ RUN apt update && apt-get install -y --no-install-recommends software-properties
 #         x11vnc xserver-xorg-video-dummy \
 #         nginx python-pip build-essential mesa-utils libgl1-mesa-dri \
 #         dbus-x11 x11-utils wget tmux htop git dconf-editor
-RUN apt-get install -y --no-install-recommends --allow-unauthenticated wget
+RUN apt-get install -y --no-install-recommends --allow-unauthenticated wget \
+        x11vnc xserver-xorg-video-dummy \
+        dbus-x11 x11-utils mesa-utils libgl1-mesa-dri
 # RUN apt-get install -y --allow-unauthenticated ubuntu-mate-desktop ubuntu-mate-core mate-backgrounds ubuntu-mate-wallpapers
 
 # Create my user
