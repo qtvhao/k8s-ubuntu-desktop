@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#' /etc/apt/sources.list
 
 
-RUN apt update && apt-get install -y --no-install-recommends curl && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt update && apt-get install -y --no-install-recommends software-properties-common curl && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # RUN apt-get update
 # RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server pwgen sudo vim-common net-tools \
 #         nginx python-pip build-essential \
@@ -21,7 +21,7 @@ RUN adduser mate sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Chrome
-RUN wget -q --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb; apt update && apt-get -fy install && which google-chrome-stable && rm google-chrome-stable_current_amd64.deb && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install && rm google-chrome-stable_current_amd64.deb
 
 # Install VSCode
 # RUN wget -q "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
