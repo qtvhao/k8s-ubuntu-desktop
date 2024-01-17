@@ -21,7 +21,7 @@ RUN adduser mate sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Chrome
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install && rm google-chrome-stable_current_amd64.deb
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install && which google-chrome-stable && rm google-chrome-stable_current_amd64.deb
 
 # Install VSCode
 # RUN wget -q "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
