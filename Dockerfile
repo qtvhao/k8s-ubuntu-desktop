@@ -12,6 +12,7 @@ RUN set -xe; \
         apt-get autoremove -y; \
         which google-chrome-stable; \
         apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get install -y --no-install-recommends zip unzip && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN set -xe; \
         wget -q --no-check-certificate https://chromedriver.storage.googleapis.com/$(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip; \
         apt-get install -y --no-install-recommends unzip; \
