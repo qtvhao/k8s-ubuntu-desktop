@@ -3,12 +3,13 @@
 set -xeo pipefail
 
 while true; do
-    sleep .2
-    curl -s http://localhost:21222/json/version > /dev/null 2>&1 && break || true
+    sleep 1
+    curl -s http://localhost:21222/json | jq -e '.[] | select(.type == "page")' && break || true
 done
 
-curl -s http://localhost:21222/json/version | jq .
+curl -s http://localhost:21222/json | jq -e '.[] | select(.type == "page")'
+
 while true; do
     sleep 18
-    timeout 1 curl -s http://localhost:21222/json/version | jq .
+    timeout 1 curl -s http://localhost:21222/json | jq .
 done
