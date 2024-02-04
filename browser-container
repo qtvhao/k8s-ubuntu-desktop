@@ -14,4 +14,4 @@ docker run --entrypoint /bin/bash \
     -v /etc/machine-id:/etc/machine-id \
     -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
     $BROWSER_IMAGE \
-    -c "Xvfb :1 -screen 0 1024x768x16 & export DISPLAY=:1 && google-chrome-stable --user-data-dir=/data --no-sandbox --remote-debugging-port=21222 --disable-gpu --disable-dev-shm-usage --disable-software-rasterizer --disable-setuid-sandbox --no-first-run --disable-proxy-certificate-handler --no-zygote & ./loop-healthcheck"
+    -c "Xvfb :1 -screen 0 1024x768x16 & export DISPLAY=:1 && ./loop-healthcheck"
