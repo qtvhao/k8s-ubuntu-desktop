@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -xeo pipefail
+
+while true; do
+    sleep 18
+    curl -s http://localhost:21222/json/version | jq .
+done

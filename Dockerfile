@@ -26,5 +26,6 @@ RUN set -xe; \
 
 RUN apt-get update && apt-get install -y --no-install-recommends xvfb curl jq && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY ./loop-healthcheck .
 EXPOSE 80
 WORKDIR /root
