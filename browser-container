@@ -8,8 +8,6 @@ docker run --entrypoint /bin/bash \
     --name browser-container \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -e DISPLAY=$DISPLAY \
-    -v /dev:/dev \
-    -v /etc/machine-id:/etc/machine-id \
     -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
     $BROWSER_IMAGE \
     -c "Xvfb :1 -screen 0 1024x768x16 & export DISPLAY=:1 && ./loop-healthcheck"
