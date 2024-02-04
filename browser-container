@@ -1,0 +1,18 @@
+#!/bin/bash
+
+BROWSER_IMAGE="ghcr.io/qtvhao/k8s-ubuntu-desktop:master"
+# docker pull $BROWSER_IMAGE
+docker build -t $BROWSER_IMAGE .
+docker run --entrypoint /bin/bash \
+    -it --rm \
+    --name browser-container \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    -e DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS \
+    -v /run/user/0/bus:/run/user/0/bus \
+    -v /dev:/dev \
+    -v /etc/machine-id:/etc/machine-id \
+    -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
+    $BROWSER_IMAGE \
+    -c "Xvfb :1 -screen 0 1024x768x16 & export DISPLAY=:1 && google-chrome-stable --user-data-dir=/data --no-sandbox --remote-debugging-port=21222 --disable-gpu --disable-dev-shm-usage --disable-software-rasterizer --disable-setuid-sandbox --no-first-run --disable-proxy-certificate-handler --no-zygote & while true; do sleep 18; curl -s http://localhost:21222/json/version | jq .; done"
+
