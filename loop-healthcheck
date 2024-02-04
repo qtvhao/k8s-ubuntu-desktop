@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -xeo pipefail
+# Failed to connect to the bus: Failed to connect to socket /run/user/0/bus: No such file or directory
+export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/session.conf --fork --print-address`
 
 google-chrome-stable \
     --user-data-dir=/data \

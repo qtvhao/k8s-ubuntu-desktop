@@ -8,8 +8,6 @@ docker run --entrypoint /bin/bash \
     --name browser-container \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -e DISPLAY=$DISPLAY \
-    -e DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS \
-    -v /run/user/0/bus:/run/user/0/bus \
     -v /dev:/dev \
     -v /etc/machine-id:/etc/machine-id \
     -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
