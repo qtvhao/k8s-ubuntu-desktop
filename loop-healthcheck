@@ -9,10 +9,10 @@ export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/ses
 # use `dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
 export DBUS_SYSTEM_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
 
-# org.freedesktop.UPower is not available in container, so we need to use upowerd instead
-# use `upowerd -D`
-upowerd -D &
+# iinotify_init() failed: Too many open files (24)
+
 google-chrome-stable \
+    --disable-inotify \
     --user-data-dir=/data \
     --remote-debugging-port=21222 \
     --disable-gpu \
