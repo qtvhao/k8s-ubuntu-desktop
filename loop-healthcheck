@@ -1,15 +1,9 @@
 #!/bin/bash
 
 set -xeo pipefail
-# Failed to connect to the bus: Failed to connect to socket /run/user/0/bus: No such file or directory
+
 export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/session.conf --fork --print-address`
-
-# Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-# system_bus_socket is cannot be used in container, so we need to use tcp instead
-# use `dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
 export DBUS_SYSTEM_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
-
-# iinotify_init() failed: Too many open files (24)
 
 google-chrome-stable \
     --disable-inotify \
@@ -22,16 +16,4 @@ google-chrome-stable \
     --disable-proxy-certificate-handler \
     --no-sandbox \
     --no-first-run \
-    --no-zygote &
-
-while true; do
-    sleep 1
-    curl -s http://localhost:21222/json | jq -e '.[] | select(.type == "page")' && break || true
-done
-
-curl -s http://localhost:21222/json | jq -e '.[] | select(.type == "page") | .title'
-
-while true; do
-    sleep 18
-    timeout 1 curl -s http://localhost:21222/json | jq -e '.[] | select(.type == "page") | .title'
-done
+    --no-zygote
