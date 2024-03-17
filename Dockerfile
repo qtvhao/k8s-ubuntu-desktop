@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DL_GOOGLE_CHROME_VERSION="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 RUN set -xe; \
-        apt-get update && apt-get install -y --no-install-recommends curl ca-certificates upower; \
+        apt-get update && apt-get install -y --no-install-recommends curl ca-certificates upower chromium; \
         curl -sSL -o google-chrome-stable_current_amd64.deb $DL_GOOGLE_CHROME_VERSION; \
         dpkg -i google-chrome-stable_current_amd64.deb || apt-get -fy --no-install-recommends install; \
         rm google-chrome-stable_current_amd64.deb; \
