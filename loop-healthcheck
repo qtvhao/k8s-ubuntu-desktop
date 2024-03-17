@@ -5,6 +5,14 @@ set -xeo pipefail
 export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/session.conf --fork --print-address`
 export DBUS_SYSTEM_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
 
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    echo "Failed to get DBUS_SESSION_BUS_ADDRESS"
+    exit 1
+fi
+if [ -z "$DBUS_SYSTEM_BUS_ADDRESS" ]; then
+    echo "Failed to get DBUS_SYSTEM_BUS_ADDRESS"
+    exit 1
+fi
 google-chrome-stable \
     --disable-inotify \
     --user-data-dir=/data \
