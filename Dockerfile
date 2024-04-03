@@ -1,6 +1,11 @@
 FROM debian:stable-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends procps
+RUN echo "" > "/etc/sysctl.d/local.conf"
+RUN echo "fs.inotify.max_user_watches=95956992" >> "/etc/sysctl.d/local.conf"
+RUN echo "fs.inotify.max_user_instances=32768" >> "/etc/sysctl.d/local.conf"
+RUN echo "fs.inotify.max_queued_events=4194304" >> "/etc/sysctl.d/local.conf"
+
 RUN set -xe; \
     apt-get update; \
     which dbus-daemon || apt-get install -y --no-install-recommends dbus; \
