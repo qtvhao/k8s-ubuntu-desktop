@@ -1,5 +1,6 @@
 FROM debian:stable-slim
 
+RUN apt-get update && apt-get install -y --no-install-recommends procps
 RUN set -xe; \
     apt-get update; \
     which dbus-daemon || apt-get install -y --no-install-recommends dbus; \
