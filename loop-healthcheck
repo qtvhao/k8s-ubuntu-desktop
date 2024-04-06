@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -xeo pipefail
-
+rm /run/dbus/pid || true
 export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/session.conf --fork --print-address`
 export DBUS_SYSTEM_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/system.conf --fork --print-address`
 

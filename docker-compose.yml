@@ -9,6 +9,10 @@ services:
       DISPLAY_HEIGHT: 600
     ports:
       - 6080:8080
+  puppeteer:
+    build:
+      context: .
+      dockerfile: Dockerfile.puppeteer
   chrome:
     build: .
     environment:

@@ -1,0 +1,19 @@
+{
+  "name": "k8s-ubuntu-desktop",
+  "version": "1.0.0",
+  "description": "k8s-ubuntu-desktop ================== Docker image and k8s manifests for running a web-based Linux Desktop.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qtvhao/k8s-ubuntu-desktop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qtvhao/k8s-ubuntu-desktop/issues"
+  },
+  "homepage": "https://github.com/qtvhao/k8s-ubuntu-desktop#readme"
+}
