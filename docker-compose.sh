@@ -1,2 +1,3 @@
 #!/bin/bash
-docker-compose up
+kompose convert -f docker-compose.yml
+docker-compose up --build

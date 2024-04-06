@@ -1,9 +1,18 @@
 version: "3"
 services:
+  novnc:
+    image: ghcr.io/qtvhao/docker-novnc:master
+    restart: always
+    environment:
+      VNC_PASSWORD: "DNGfRiZ815CnKtoKXKSzX76zMF24x3bY"
+      DISPLAY_WIDTH: 800
+      DISPLAY_HEIGHT: 600
+    ports:
+      - 6080:8080
   chrome:
     build: .
-    # environment:
-    #   USER: "samba"
+    environment:
+      DISPLAY: "novnc:0"
     #   PASS: "secret"
     #   UID: 1000    # Optional, default 1000
     #   GID: 1000    # Optional, default 1000
@@ -12,4 +21,7 @@ services:
     # volumes:
       # - /home/example:/storage
     restart: always
+    depends_on:
+      novnc:
+        condition: service_started
   
