@@ -1,0 +1,15 @@
+version: "3"
+services:
+  chrome:
+    build: .
+    # environment:
+    #   USER: "samba"
+    #   PASS: "secret"
+    #   UID: 1000    # Optional, default 1000
+    #   GID: 1000    # Optional, default 1000
+    # ports:
+      # - 445:445
+    # volumes:
+      # - /home/example:/storage
+    restart: always
+  
