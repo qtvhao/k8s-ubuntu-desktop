@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/qtvhao/k8s-ubuntu-desktop/issues"
   },
-  "homepage": "https://github.com/qtvhao/k8s-ubuntu-desktop#readme"
+  "homepage": "https://github.com/qtvhao/k8s-ubuntu-desktop#readme",
+  "dependencies": {
+    "puppeteer": "^22.6.3"
+  }
 }
