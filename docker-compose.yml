@@ -9,12 +9,42 @@ services:
       DISPLAY_HEIGHT: 600
     ports:
       - 6080:8080
+    networks:
+      - chrome_net
   puppeteer:
     build:
       context: .
       dockerfile: Dockerfile.puppeteer
+    # command: ["node", "./test-chrome.js"] 
+    entrypoint: bash
+    command: |
+      -c
+      "set -xeo pipefail
+      curl http://203.0.117.3:21223/json"
+      node ./test-chrome.js
+    depends_on:
+      chrome:
+        condition: service_healthy
+    networks:
+      - chrome_net
   chrome:
+    stop_grace_period: 1s
     build: .
+    volumes:
+      - /dev/shm:/dev/shm
+      - /dev/dri:/dev/dri
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:21223/json"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    entrypoint: bash
+    command: [
+      "-c",
+      # socat forwarding 21223 to 21222
+      "socat TCP-LISTEN:21223,reuseaddr,fork TCP:localhost:21222 & 
+      ./loop-healthcheck"
+    ]
     environment:
       DISPLAY: "novnc:0"
     #   PASS: "secret"
@@ -28,4 +58,14 @@ services:
     depends_on:
       novnc:
         condition: service_started
+    networks:
+      chrome_net:
+        ipv4_address: 203.0.117.3
+
+networks:
+  chrome_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 203.0.117.0/24
   
