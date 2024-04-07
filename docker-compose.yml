@@ -15,24 +15,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.puppeteer
-    # command: ["node", "./test-chrome.js"] 
     entrypoint: bash
     command: |
-      -c
-      "set -xeo pipefail
-      curl http://203.0.117.3:21223/json"
-      node ./test-chrome.js
+      -c "set -xeo pipefail
+      node ./test-chrome.js"
     depends_on:
       chrome:
-        condition: service_healthy
+        condition: service_started
     networks:
       - chrome_net
   chrome:
     stop_grace_period: 1s
     build: .
-    volumes:
-      - /dev/shm:/dev/shm
-      - /dev/dri:/dev/dri
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:21223/json"]
       interval: 10s
