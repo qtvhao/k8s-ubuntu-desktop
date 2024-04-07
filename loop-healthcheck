@@ -7,10 +7,12 @@ export DBUS_SYSTEM_BUS_ADDRESS=`dbus-daemon --config-file=/usr/share/dbus-1/syst
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     echo "Failed to get DBUS_SESSION_BUS_ADDRESS"
+    sleep 30
     exit 1
 fi
 if [ -z "$DBUS_SYSTEM_BUS_ADDRESS" ]; then
     echo "Failed to get DBUS_SYSTEM_BUS_ADDRESS"
+    sleep 30
     exit 1
 fi
 google-chrome-stable \
