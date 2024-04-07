@@ -35,7 +35,6 @@ services:
     entrypoint: bash
     command: [
       "-c",
-      # socat forwarding 21223 to 21222
       "socat TCP-LISTEN:21223,reuseaddr,fork TCP:localhost:21222 & 
       ./loop-healthcheck"
     ]
