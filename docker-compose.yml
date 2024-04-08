@@ -5,8 +5,8 @@ services:
     restart: always
     environment:
       VNC_PASSWORD: "DNGfRiZ815CnKtoKXKSzX76zMF24x3bY"
-      DISPLAY_WIDTH: 800
-      DISPLAY_HEIGHT: 600
+      DISPLAY_WIDTH: 1440
+      DISPLAY_HEIGHT: 750
     ports:
       - 6080:8080
     networks:
