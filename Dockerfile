@@ -36,6 +36,15 @@ RUN set -xe; \
         apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN which socat || apt-get update && apt-get install -y --no-install-recommends socat && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Locale settings (japanese)
+RUN apt update && apt-get install -y locales task-japanese \
+  && locale-gen vi_VN.UTF-8 \
+  && localedef -f UTF-8 -i vi_VN vi_VN
+ENV LANG vi_VN.UTF-8
+ENV LANGUAGE vi_VN:jp
+ENV LC_ALL vi_VN.UTF-8
+
 EXPOSE 80
 WORKDIR /root
 COPY ./loop-healthcheck .
