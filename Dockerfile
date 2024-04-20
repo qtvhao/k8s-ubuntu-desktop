@@ -36,6 +36,7 @@ RUN set -xe; \
         apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN which socat || apt-get update && apt-get install -y --no-install-recommends socat && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get install -y samba-client cifs-utils
 
 # Locale settings (japanese)
 RUN apt update && apt-get install -y locales task-japanese \
