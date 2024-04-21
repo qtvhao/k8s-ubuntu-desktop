@@ -38,6 +38,7 @@ for i in $(seq 1 10); do
 done
 mkdir -p /data
 cp -r /data-backup/profile/* /data/ || true
+chmod -R 0777 /data
 
 google-chrome-stable \
     --start-maximized \
