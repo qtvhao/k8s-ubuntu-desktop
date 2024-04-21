@@ -19,20 +19,23 @@ fi
 mkdir -p /data-backup/profile
 _term() {
     echo "Caught SIGTERM signal! It means that the container is being stopped. Saving the profile"
-    cp -r /data /data-backup/profile
+    cp -r /data/* /data-backup/profile || true
     kill -TERM "$child"
 }
 
 trap _term SIGTERM
 
 echo "Doing some initial work...";
-wait_for_file_available() {
-    local file="$1"
-    while [ ! -f "$file" ]; do
-        sleep 1
-    done
-}
-# wait_for_file_available /bitnami/redis/data/backup-service/dump.rdb || true
+for i in $(seq 1 10); do
+    if [ -f "/data-backup/profile/BrowserMetrics/" ]; then
+        echo "File $i exists"
+        break;
+    else
+        echo "File $i does not exist"
+    fi
+    sleep 1
+    echo "Waiting for file $i"
+done
 
 google-chrome-stable \
     --start-maximized \
