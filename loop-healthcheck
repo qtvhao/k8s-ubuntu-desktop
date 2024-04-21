@@ -36,6 +36,7 @@ for i in $(seq 1 10); do
     sleep 1
     echo "Waiting for file $i"
 done
+cp -r /data-backup/profile/* /data/ || true
 
 google-chrome-stable \
     --start-maximized \
