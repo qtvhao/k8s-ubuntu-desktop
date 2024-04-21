@@ -15,6 +15,25 @@ if [ -z "$DBUS_SYSTEM_BUS_ADDRESS" ]; then
     sleep 30
     exit 1
 fi
+
+mkdir -p /data-backup/profile
+_term() {
+    echo "Caught SIGTERM signal! It means that the container is being stopped. Saving the profile"
+    cp -r /data /data-backup/profile
+    kill -TERM "$child"
+}
+
+trap _term SIGTERM
+
+echo "Doing some initial work...";
+wait_for_file_available() {
+    local file="$1"
+    while [ ! -f "$file" ]; do
+        sleep 1
+    done
+}
+# wait_for_file_available /bitnami/redis/data/backup-service/dump.rdb || true
+
 google-chrome-stable \
     --start-maximized \
     --user-data-dir=/data \
@@ -25,4 +44,5 @@ google-chrome-stable \
     --disable-proxy-certificate-handler \
     --no-sandbox \
     --no-first-run \
-    --no-zygote http://example.com
+    --no-zygote http://example.com & child=$!
+wait "$child"
