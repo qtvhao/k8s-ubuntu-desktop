@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM ghcr.io/qtvhao/debian:main
 
 RUN apt-get update && apt-get install -y --no-install-recommends procps
 RUN echo "" > "/etc/sysctl.d/local.conf"
