@@ -1,4 +1,4 @@
-FROM ghcr.io/qtvhao/debian:main
+FROM ghcr.io/qtvhao/chrome:main
 
 # Locale settings (japanese)
 RUN locale-gen vi_VN.UTF-8 \
