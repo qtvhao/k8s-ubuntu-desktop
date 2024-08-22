@@ -1,6 +1,7 @@
 FROM ghcr.io/qtvhao/chrome:main
 
 # Locale settings (japanese)
+
 # RUN locale-gen vi_VN.UTF-8 \
 #   && localedef -f UTF-8 -i vi_VN vi_VN
 # ENV LANG vi_VN.UTF-8
