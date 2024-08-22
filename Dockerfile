@@ -8,6 +8,7 @@ FROM ghcr.io/qtvhao/chrome:main
 # ENV LANGUAGE vi_VN:jp
 # ENV LC_ALL vi_VN.UTF-8
 
+
 EXPOSE 80
 WORKDIR /root
 COPY ./loop-healthcheck .
