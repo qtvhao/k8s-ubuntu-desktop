@@ -53,5 +53,6 @@ google-chrome-stable \
     --disable-proxy-certificate-handler \
     --no-sandbox \
     --no-first-run \
+    --disable-features=PrivacySandboxSettings4 \
     --no-zygote http://example.com & child=$!
 wait "$child"
