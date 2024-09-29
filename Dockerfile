@@ -7,6 +7,7 @@ FROM ghcr.io/qtvhao/chrome:main
 # ENV LANG vi_VN.UTF-8
 # ENV LANGUAGE vi_VN:jp
 # ENV LC_ALL vi_VN.UTF-8
+RUN which xwd || apt-get update && apt-get install -y x11-apps
 
 
 EXPOSE 80
