@@ -51,6 +51,8 @@ google-chrome-stable \
     --disable-dev-shm-usage \
     --disable-software-rasterizer \
     --disable-proxy-certificate-handler \
+    --disable-audio-output \
+    --single-process \
     --no-sandbox \
     --no-first-run \
     --disable-features=PrivacySandboxSettings4 \
