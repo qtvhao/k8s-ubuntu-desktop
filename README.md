@@ -7,6 +7,7 @@ Docker image and k8s manifests for running a web-based Linux Desktop.
 Quick Start
 -------------------------
 
+
 ### Create a NS and password secret
 ```console
   $ kubectl create ns desktop
