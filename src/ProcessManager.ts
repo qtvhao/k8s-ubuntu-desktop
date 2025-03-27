@@ -25,7 +25,9 @@ class ProcessManager {
       'http://example.com'
     ];
 
-    this.chromeProcess = spawn('google-chrome-stable', args);
+    this.chromeProcess = spawn('google-chrome-stable', args, {
+      env: { ...process.env, DISPLAY: ':0' }
+    });
 
     this.chromeProcess.stdout.on('data', (data) => {
       console.log(`[Chrome STDOUT]: ${data}`);

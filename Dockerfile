@@ -12,6 +12,10 @@ RUN which xwd || apt-get update && apt-get install -y x11-apps
 
 EXPOSE 80
 WORKDIR /root
+COPY package.json yarn.lock tsconfig.json .
+RUN yarn
+COPY src src
+RUN npx tsc
 COPY ./loop-healthcheck .
 
 CMD ["./loop-healthcheck"]
